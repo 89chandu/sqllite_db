@@ -30,71 +30,71 @@ class Database:
         connection.close()
 
 
-        @classmethod
-        def add_student(cls,name,age,course):
+    @classmethod
+    def add_student(cls,name,age,course):
 
-            connection = cls.connect()
+        connection = cls.connect()
 
-            cursor = connection.cursor()
+        cursor = connection.cursor()
 
-            cursor.execute(
-                """
-                INSERT INTO students(name,age,course)
+        cursor.execute(
+            """
+            INSERT INTO students(name,age,course)
 
-                VALUES(?,?,?)
-                """,
-                (name,age,course)
-            )
+            VALUES(?,?,?)
+            """,
+            (name,age,course)
+        )
 
-            connection.commit()
-            connection.close()
+        connection.commit()
+        connection.close()
 
 
-        @classmethod   
-        def get_students(cls):
+    # @classmethod   
+    # def get_students(cls):
 
-            connection = cls.connect()
+    #     connection = cls.connect()
 
-            cursor = connection.cursor()
+    #     cursor = connection.cursor()
 
-            cursor.execute(
+    #     cursor.execute(
 
-                "SELECT *FROM students"
-            )
+    #         "SELECT *FROM students"
+    #     )
 
-            students = cursor.fetchall()
-            connection.close()
+    #     students = cursor.fetchall()
+    #     connection.close()
 
-            return students
+    #     return students
         
-        @classmethod
-        def update_student(cls,student_id,name,age,course):
+    #     @classmethod
+    #     def update_student(cls,student_id,name,age,course):
 
-            connection = cls.connect()
+    #         connection = cls.connect()
 
-            cursor = connection.cursor()
+    #         cursor = connection.cursor()
 
-            cursor.execute(
-                """
+    #         cursor.execute(
+    #             """
 
-                UPDATE students
+    #             UPDATE students
 
-                SET 
+    #             SET 
 
-                    name = ?,
-                    age = ?,
-                    course = ?
+    #                 name = ?,
+    #                 age = ?,
+    #                 course = ?
 
-                WHERE id = ?    
-                """,
-                (name,age,course,student_id)
-            )
+    #             WHERE id = ?    
+    #             """,
+    #             (name,age,course,student_id)
+    #         )
 
-            connection.commit()
-            rows = cursor.rowcount
-            connection.close()
+    #         connection.commit()
+    #         rows = cursor.rowcount
+    #         connection.close()
 
-            return rows > 0
+    #         return rows > 0
 
 
 
